@@ -23,8 +23,9 @@ public class CommentController {
     public ResponseEntity commentSave(
                                       @RequestBody CommentRequestDto commentRequestDto,
                                       @RequestHeader("Authorization") String token
-                                      ){
+                                      ) {
         return ResponseEntity.ok(commentService.commentSave(token.replace("Bearer ", ""), commentRequestDto));
 
     }
+
 }
