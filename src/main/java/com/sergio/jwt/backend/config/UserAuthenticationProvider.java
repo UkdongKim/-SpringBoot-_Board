@@ -3,16 +3,22 @@ package com.sergio.jwt.backend.config;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTDecodeException;
+import com.auth0.jwt.impl.JWTParser;
+import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.sergio.jwt.backend.domain.user.User;
 import com.sergio.jwt.backend.dtos.UserDto;
 import com.sergio.jwt.backend.services.UserService;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
+import java.sql.SQLOutput;
 import java.util.Base64;
 import java.util.Collections;
 import java.util.Date;
@@ -45,6 +51,8 @@ public class UserAuthenticationProvider {
     }
 
     public Authentication validateToken(String token) {
+        System.out.println("=====000=====");
+        System.out.println(token);
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
 
         JWTVerifier verifier = JWT.require(algorithm)
@@ -58,4 +66,13 @@ public class UserAuthenticationProvider {
         return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
     }
 
+    public User findUserByToken(String token) {
+        Algorithm algorithm = Algorithm.HMAC256(secretKey);
+        JWTVerifier verifier = JWT.require(algorithm)
+                .build();
+        DecodedJWT decoded = verifier.verify(token);
+
+        User userEntityByLogin = userService.findUserEntityByLogin(decoded.getSubject());
+        return userEntityByLogin;
+    }
 }

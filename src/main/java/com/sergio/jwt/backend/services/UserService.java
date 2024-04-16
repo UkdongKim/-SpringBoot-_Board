@@ -58,4 +58,10 @@ public class UserService {
         return userMapper.toUserDto(user);
     }
 
+    public User findUserEntityByLogin(String login) {
+        User user = usersRepository.findByLogin(login)
+                .orElseThrow(() -> new AppException("Unknown user 없는회원이라구!", HttpStatus.NOT_FOUND));
+        return user;
+    }
+
 }
