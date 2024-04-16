@@ -1,4 +1,4 @@
-package com.sergio.jwt.backend.entites;
+package com.sergio.jwt.backend.domain.user;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

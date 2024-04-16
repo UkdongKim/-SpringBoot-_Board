@@ -6,7 +6,7 @@
 //import com.sergio.jwt.backend.domain.user.Users;
 //import com.sergio.jwt.backend.domain.user.UsersRepository;
 //import com.sergio.jwt.backend.dtos.comment.CommentRequestDto;
-//import com.sergio.jwt.backend.entites.User;
+//import com.sergio.jwt.backend.domain.user.User;
 //import lombok.RequiredArgsConstructor;
 //import org.springframework.stereotype.Service;
 //import org.springframework.transaction.annotation.Transactional;

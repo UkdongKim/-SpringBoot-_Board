@@ -3,7 +3,7 @@ package com.sergio.jwt.backend.services;
 import com.sergio.jwt.backend.dtos.CredentialsDto;
 import com.sergio.jwt.backend.dtos.SignUpDto;
 import com.sergio.jwt.backend.dtos.UserDto;
-import com.sergio.jwt.backend.entites.User;
+import com.sergio.jwt.backend.domain.user.User;
 import com.sergio.jwt.backend.exceptions.AppException;
 import com.sergio.jwt.backend.mappers.UserMapper;
 import com.sergio.jwt.backend.domain.user.UsersRepository;
